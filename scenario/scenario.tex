@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{From Rings to Spheres: The Topology of Frequencies}
+\author{Animation Script / Storyboard}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+This document serves as a blueprint for a mathematical animation explaining the geometric transition from 1D Fourier Series to 2D Fourier Series and Spherical Harmonics, focusing on boundary conditions and topology rather than heavy algebraic derivation.
+
+\section*{Scene 0: Introduction and Motivation}
+\textbf{Visuals:}
+Open with a montage of classic spherical harmonic shapes (colorful, lumpy 3D lobes, perhaps $Y_2^0$, $Y_3^2$, etc.) rotating gently on screen. 
+Transition to a perfectly smooth sphere representing Earth. Animate it morphing into a slightly exaggerated, lumpy "geoid" shape to represent the actual gravitational field, overlaid with heatmap colors indicating higher and lower gravity.
+
+\textbf{Narration:}
+For some time, I wanted to get familiar with spherical harmonics. I've seen the formulas and the intriguing 3D representations, but I really didn't feel "friends" with the concept. 
+
+Most of the resources refer to angular momentum when introducing spherical harmonics. But if you read Wikipedia, you can see that they were actually developed much earlier than quantum mechanics came around. 
+
+In this video, I'll try to show a brief, intuitive explanation of spherical harmonics, using just geometrical visualizations and 1D Fourier series as a starting point.
+
+\section*{Title Card}
+\textbf{Visuals:}
+Just after the introduction, a clean title card displays the title ``Spherical Harmonics'' (with a small, gently rotating spherical-harmonic shape as decoration), then fades out into Scene 1.
+
+\section*{Scene 1: The 1D Fourier Transform and the Ring}
+\textbf{Visuals:} 
+Start with a standard 1D Cartesian coordinate system. Draw a random, smooth function over a finite interval $[0, 2\pi]$. Animate the decomposition of this function into a sum of sine and cosine waves. 
+Then, smoothly animate the straight x-axis interval bending into a circle, matching the endpoints together. The function's graph deforms with it, becoming a closed wave wrapped around the ring.
+
+\textbf{Narration:}
+We usually first encounter the Fourier series as a sum of sines and cosines used to approximate a function on a 1D line. But why sines and cosines? According to Wikipedia, Joseph Fourier originally developed this theory while trying to understand how heat distributes itself around a metal ring. This shows why the choice of sines and cosines is actually quite natural. We need the value at the beginning of our interval to perfectly match the value at the end. This allows us to wrap the interval into a circle - the ring that Fourier was interested in.
+
+\section*{Scene 2: Deforming the Ring}
+\textbf{Visuals:}
+Keep the wrapped 1D ring on screen. Slowly manipulate the coefficients of the Fourier series. As the coefficients change, the shape of the ring deforms, warping into various 2D closed loops (like a clover, a squiggly blob, or a heart).
+
+\textbf{Narration:}
+Fourier was interested in heat on rings, but this whole approach turns out to be far more general. The result of adding these waves can be read as a heatmap on the ring - red where the function is positive, blue where it is negative. But we can equally see it as a physical deformation of the base ring into a new shape. And that is what makes it so powerful: by choosing the waves, we can draw essentially any continuous, closed loop in the plane - a clover, a squiggly blob, even a heart.
+
+\section*{Scene 3: Stepping into 3D}
+\textbf{Visuals:}
+Fade out the deformed loops and bring back the straight 1D interval. Visually extrude or expand this 1D line downwards, transforming it into a 2D square patch (a grid where $x \in [0, 2\pi]$ and $y \in [0, 2\pi]$). 
+
+\textbf{Narration:}
+But why limit ourselves to 2D loops? What if we want to model complex surfaces in 3D space? We can follow the exact same logic as for the 1D Fourier case. Instead of starting with a line segment, we step up a dimension and start with a 2D square domain. Now, just as we had to decide what to do with the two endpoints of our segment, we have to decide what to do with the boundary of this square to create the base 3D shape.
+
+\section*{Scene 4: The Torus and 2D Fourier}
+\textbf{Visuals:}
+Take the flat square patch. Animate the left edge curving around to meet the right edge, forming a cylinder. Then, animate the top edge curving around to meet the bottom edge, forming a donut (a torus). 
+Display the mathematical equivalence classes on screen as the gluing happens.
+
+\textbf{Narration:}
+One option is to glue the opposite edges together. We attach the left edge to the right edge, and the top edge to the bottom edge. Mathematically, we define this with an equivalence class:
+$$ (0, y) \sim (2\pi, y) \quad \text{and} \quad (x, 0) \sim (x, 2\pi) $$
+This specific geometric gluing creates a torus. Because the boundaries seamlessly wrap around in both directions, the natural basis functions for this shape are just standard sines and cosines in two directions. This gives us the 2D Fourier Series.
+
+\section*{Scene 5: The Sphere and Spherical Harmonics}
+\textbf{Visuals:}
+Reset back to the flat square patch. This time, animate the left and right edges gluing together to form a cylinder again. However, instead of connecting the top and bottom, act like pulling a drawstring: pinch the entire top edge of the cylinder into a single point (the North Pole), and pinch the entire bottom edge into a single point (the South Pole). The shape inflates into a perfect sphere. 
+Show spherical harmonic patterns (heatmap colors or physical bulges) appearing on the sphere.
+
+\textbf{Narration:}
+But there is another option. We can glue the vertical edges together, but then take the entire top edge, pinch it into a single point, and do the same thing with the bottom edge.
+$$ (0, y) \sim (2\pi, y) $$
+$$ (x, 0) \sim C_{\text{North Pole}} \quad \text{and} \quad (x, \pi) \sim C_{\text{South Pole}} $$
+This topological transformation creates a sphere. Choosing this different transformation introduces completely different boundary conditions—specifically at those pinched poles—which means we need a new set of basis functions. This choice leads us to Spherical Harmonics. 
+
+While we could dive into the heavy differential equations used to derive them, the core idea is exactly the same as the 1D Fourier case. We are simply finding a set of wavy functions that automatically align to the topology of our base shape. By scaling and summing these spherical basis functions, we can deform our smooth base sphere into any lumpy, complex 3D shape we want.
+
+\section*{Scene 6: Radial Functions and Applications}
+\textbf{Visuals:}
+Smoothly transition from the 3D heart back to the ``composition'' shape from Scene 5 (the sum of a few spherical harmonics). Decompose it back into its individual spherical-harmonic component spheres, with $+$ signs between them. Above each component, write a general radial function $R_\ell(r)$, indicating that each angular component gets multiplied by a radial function. Display the general expansion
+$$ f(r,\theta,\phi) = \sum_{\ell,m} R_\ell(r)\, c_{\ell m}\, Y_\ell^m(\theta,\phi). $$
+Indicate that choosing the radial functions appropriately models different physical phenomena -- e.g. for gravity, $R_\ell(r) \propto r^{-(\ell+1)}$. End on the idea that the angular shape and the radial physics are cleanly separated, and list a few fields where this is used.
+
+\textbf{Narration:}
+Ok, but how do we actually use spherical harmonics to explain different phenomena, such as gravity? Let's go back to our weird shape that was a composition of a few spherical harmonics. Thanks to the fact that we have this shape decomposed, we can determine how each component influences the surrounding space: we multiply each spherical-harmonic component by a radial function. By changing these radial functions, we can analyze different phenomena -- for example, express the gravitational field generated by our shape. Of course, deriving such formulas is not an easy task, but note the beauty of this approach: we have effectively separated the analysis of the shape from the physical phenomena it generates. This is why spherical harmonics are so powerful, and why they can be used in so many fields -- including gravity, quantum mechanics, geophysics, and computer graphics.
+
+I hope this gives a short, intuitive introduction to spherical harmonics. There are multiple great resources that cover the actual math behind the topic - I reference a few in the video description. I wanted to focus on the intuitive, geometrical picture. Hopefully I've managed to accomplish that at least to some extent.
+
+\end{document}
